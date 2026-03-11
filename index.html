@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Muhammad Khan | Frontend Portfolio</title>
+  <meta name="description" content="Frontend Developer portfolio showcasing skills, projects, resume, and contact information." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #081120;
+      --bg-soft: #101a2f;
+      --panel: rgba(255,255,255,0.06);
+      --panel-border: rgba(255,255,255,0.12);
+      --text: #edf2ff;
+      --muted: #b6c2e0;
+      --primary: #66e3ff;
+      --secondary: #8b7dff;
+      --accent: #2af598;
+      --shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
+      --radius: 22px;
+      --max-width: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(102, 227, 255, 0.18), transparent 26%),
+        radial-gradient(circle at top right, rgba(139, 125, 255, 0.2), transparent 24%),
+        linear-gradient(180deg, #07101d 0%, #0a1326 46%, #081120 100%);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 34px 34px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(0,0,0,1));
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 2rem));
+      margin-inline: auto;
+    }
+
+    .section {
+      padding: 5.5rem 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      margin-bottom: 0.9rem;
+      line-height: 1.15;
+    }
+
+    .section-text {
+      color: var(--muted);
+      max-width: 720px;
+      margin-bottom: 2rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.9rem;
+      color: var(--primary);
+      background: rgba(102, 227, 255, 0.08);
+      border: 1px solid rgba(102, 227, 255, 0.18);
+      padding: 0.65rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+      backdrop-filter: blur(12px);
+    }
+
+    .glass {
+      background: var(--panel);
+      border: 1px solid var(--panel-border);
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
+      border-radius: var(--radius);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(34px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(8, 17, 32, 0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 78px;
+      gap: 1rem;
+    }
+
+    .logo {
+      font-size: 1.15rem;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
+    .logo span {
+      color: var(--primary);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 1.4rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 500;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--text);
+    }
+
+    .menu-btn {
+      display: none;
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.16);
+      color: var(--text);
+      padding: 0.7rem 0.85rem;
+      border-radius: 12px;
+      cursor: pointer;
+    }
+
+    .btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.95rem 1.35rem;
+      border-radius: 14px;
+      font-weight: 700;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+      border: 1px solid transparent;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #06111e;
+      box-shadow: 0 16px 32px rgba(102, 227, 255, 0.22);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.04);
+      border-color: rgba(255,255,255,0.14);
+      color: var(--text);
+    }
+
+    .hero {
+      min-height: calc(100vh - 78px);
+      display: grid;
+      align-items: center;
+      padding: 4rem 0 2rem;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.6rem, 6vw, 5rem);
+      line-height: 1.02;
+      margin-bottom: 1rem;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #ffffff, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      font-size: 1.06rem;
+      color: var(--muted);
+      max-width: 650px;
+    }
+
+    .hero-card {
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::before {
+      content: "";
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: rgba(102, 227, 255, 0.18);
+      top: -80px;
+      right: -70px;
+      filter: blur(8px);
+    }
+
+    .hero-visual {
+      min-height: 450px;
+      padding: 2rem;
+      display: grid;
+      place-items: center;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .hero-avatar {
+      width: min(100%, 360px);
+      aspect-ratio: 1;
+      border-radius: 28px;
+      background: linear-gradient(145deg, rgba(102, 227, 255, 0.15), rgba(139, 125, 255, 0.16));
+      border: 1px solid rgba(255,255,255,0.14);
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-avatar::before,
+    .hero-avatar::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(10px);
+    }
+
+    .hero-avatar::before {
+      width: 180px;
+      height: 180px;
+      background: rgba(42, 245, 152, 0.2);
+      top: -20px;
+      left: -30px;
+    }
+
+    .hero-avatar::after {
+      width: 170px;
+      height: 170px;
+      background: rgba(139, 125, 255, 0.2);
+      bottom: -30px;
+      right: -20px;
+    }
+
+    .avatar-content {
+      position: relative;
+      text-align: center;
+      z-index: 1;
+      padding: 1rem;
+    }
+
+    .avatar-content .circle {
+      width: 110px;
+      height: 110px;
+      margin: 0 auto 1rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      display: grid;
+      place-items: center;
+      color: #06111e;
+      font-size: 2.4rem;
+      font-weight: 800;
+      box-shadow: 0 20px 35px rgba(102, 227, 255, 0.22);
+    }
+
+    .avatar-content h3 {
+      font-size: 1.35rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .avatar-content p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .floating-card {
+      position: absolute;
+      padding: 0.95rem 1rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.14);
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow);
+      animation: floatY 4.5s ease-in-out infinite;
+    }
+
+    .floating-card small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+
+    .floating-card strong {
+      font-size: 0.98rem;
+    }
+
+    .float-1 { top: 20px; left: 0; }
+    .float-2 { bottom: 40px; right: 0; animation-delay: 1.2s; }
+
+    @keyframes floatY {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .stat-box {
+      padding: 1.2rem;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .stat-box h3 {
+      font-size: 1.6rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .stat-box p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .about-grid,
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+
+    .card {
+      padding: 1.6rem;
+    }
+
+    .about-list {
+      display: grid;
+      gap: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .about-list li {
+      list-style: none;
+      color: var(--muted);
+      padding-left: 1.2rem;
+      position: relative;
+    }
+
+    .about-list li::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--primary);
+      position: absolute;
+      left: 0;
+      top: 0.62rem;
+      box-shadow: 0 0 16px rgba(102, 227, 255, 0.7);
+    }
+
+    .skills-grid,
+    .projects-grid,
+    .resume-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .skill-card,
+    .project-card,
+    .resume-card {
+      padding: 1.5rem;
+      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+      min-height: 100%;
+    }
+
+    .skill-card:hover,
+    .project-card:hover,
+    .resume-card:hover,
+    .contact-box:hover {
+      transform: translateY(-7px);
+      border-color: rgba(102, 227, 255, 0.26);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .skill-card h3,
+    .project-card h3,
+    .resume-card h3,
+    .contact-box h3 {
+      margin-bottom: 0.75rem;
+      font-size: 1.15rem;
+    }
+
+    .skill-tags,
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.65rem;
+      margin-top: 1rem;
+    }
+
+    .tag {
+      padding: 0.48rem 0.8rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: var(--muted);
+    }
+
+    .project-card p,
+    .skill-card p,
+    .resume-card p,
+    .contact-box p,
+    .about-card p {
+      color: var(--muted);
+    }
+
+    .project-links {
+      display: flex;
+      gap: 0.8rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .project-links a {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .timeline-item {
+      padding: 1rem 1rem 1rem 1.2rem;
+      border-left: 2px solid rgba(102, 227, 255, 0.35);
+      background: rgba(255,255,255,0.03);
+      border-radius: 0 16px 16px 0;
+    }
+
+    .timeline-item span {
+      font-size: 0.85rem;
+      color: var(--primary);
+      display: inline-block;
+      margin-bottom: 0.35rem;
+      font-weight: 600;
+    }
+
+    .contact-grid {
+      align-items: start;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .contact-box {
+      padding: 1.3rem;
+      transition: transform 0.28s ease, border-color 0.28s ease, background 0.28s ease;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: grid;
+      gap: 0.45rem;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 1rem 1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+      outline: none;
+      transition: border-color 0.25s ease, transform 0.25s ease;
+      resize: vertical;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: rgba(102, 227, 255, 0.55);
+      transform: translateY(-1px);
+    }
+
+    .footer {
+      padding: 1.6rem 0 2.4rem;
+      color: var(--muted);
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .to-top {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #06111e;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 18px 30px rgba(102, 227, 255, 0.24);
+      opacity: 0;
+      visibility: hidden;
+      transition: 0.28s ease;
+      font-size: 1.2rem;
+      font-weight: 800;
+    }
+
+    .to-top.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    @media (max-width: 991px) {
+      .hero-grid,
+      .about-grid,
+      .contact-grid,
+      .skills-grid,
+      .projects-grid,
+      .resume-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 78px;
+        left: 1rem;
+        right: 1rem;
+        padding: 1rem;
+        background: rgba(8, 17, 32, 0.95);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+        display: none;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .menu-btn {
+        display: inline-flex;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section {
+        padding: 4.2rem 0;
+      }
+
+      .hero {
+        min-height: auto;
+      }
+
+      .hero-card,
+      .card,
+      .skill-card,
+      .project-card,
+      .resume-card,
+      .contact-box {
+        padding: 1.2rem;
+      }
+
+      .btn {
+        width: 100%;
+      }
+
+      .btns {
+        flex-direction: column;
+      }
+
+      .floating-card {
+        position: static;
+        animation: none;
+        margin-top: 1rem;
+        width: 100%;
+      }
+
+      .hero-visual {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <div class="container nav">
+      <a href="#home" class="logo">Muhammad<span>Khan</span></a>
+      <button class="menu-btn" id="menuBtn">Menu</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-card glass reveal active">
+          <div class="badge">Frontend Developer • WordPress Developer • AI Automation</div>
+          <h1>Building <span>modern responsive</span> web experiences that feel clean, fast, and alive.</h1>
+          <p>
+            I create user-focused websites and interfaces using HTML, CSS, JavaScript, Bootstrap, Tailwind CSS, React,
+            WordPress, Elementor, and modern UI practices. I enjoy turning ideas into polished digital experiences.
+          </p>
+
+          <div class="btns">
+            <a href="#projects" class="btn btn-primary">View Projects</a>
+            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat-box">
+              <h3>Frontend</h3>
+              <p>Responsive layouts, interactions, animations, clean UI components.</p>
+            </div>
+            <div class="stat-box">
+              <h3>WordPress</h3>
+              <p>Business websites, page builders, landing pages, customization.</p>
+            </div>
+            <div class="stat-box">
+              <h3>AI Workflow</h3>
+              <p>Prompt-driven builds, automation ideas, and practical AI usage.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual reveal">
+          <div class="hero-avatar glass">
+            <div class="avatar-content">
+              <div class="circle">MK</div>
+              <h3>Muhammad Khan</h3>
+              <p>Frontend & WordPress Developer with a focus on modern UI, responsive design, and useful digital products.</p>
+            </div>
+          </div>
+          <div class="floating-card float-1">
+            <small>Core Stack</small>
+            <strong>HTML • CSS • JS • React</strong>
+          </div>
+          <div class="floating-card float-2">
+            <small>Tools</small>
+            <strong>Git • GitHub • WordPress</strong>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="badge reveal">About Me</div>
+        <h2 class="section-title reveal">A developer focused on clarity, design, and real-world usability.</h2>
+        <p class="section-text reveal">
+          I work on frontend development, responsive design, WordPress websites, and AI-supported workflows.
+          My goal is to create websites that not only look attractive but also feel smooth, structured, and professional.
+        </p>
+
+        <div class="about-grid">
+          <div class="card glass about-card reveal">
+            <h3>Who I Am</h3>
+            <p>
+              I am a frontend and WordPress developer who enjoys building modern web interfaces with strong layout structure,
+              responsive design, and user-friendly interaction. I like combining clean code with strong visual presentation.
+            </p>
+            <ul class="about-list">
+              <li>Focused on responsive and polished web interfaces</li>
+              <li>Comfortable with modern frontend workflows and design systems</li>
+              <li>Interested in AI-powered workflows and productivity</li>
+              <li>Always improving design taste, coding clarity, and execution</li>
+            </ul>
+          </div>
+
+          <div class="card glass reveal">
+            <h3>What I Do</h3>
+            <div class="timeline">
+              <div class="timeline-item">
+                <span>Frontend Development</span>
+                <p>Building responsive layouts, reusable sections, smooth interactions, and modern landing pages.</p>
+              </div>
+              <div class="timeline-item">
+                <span>WordPress Development</span>
+                <p>Creating business websites, service pages, landing pages, and easy-to-manage content structures.</p>
+              </div>
+              <div class="timeline-item">
+                <span>Creative Problem Solving</span>
+                <p>Using design thinking, practical UI decisions, and AI tools to speed up workflow without losing quality.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="container">
+        <div class="badge reveal">Skills & Tools</div>
+        <h2 class="section-title reveal">The stack I use to design and develop modern websites.</h2>
+        <p class="section-text reveal">
+          These are the tools and technologies I use to create smooth, responsive, and visually strong web experiences.
+        </p>
+
+        <div class="skills-grid">
+          <article class="skill-card glass reveal">
+            <h3>Frontend Fundamentals</h3>
+            <p>Strong grip on clean structure, semantic markup, responsive styling, and interactive web behavior.</p>
+            <div class="skill-tags">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">JavaScriptES6+</span>
+             
+             
+            </div>
+          </article>
+
+          <article class="skill-card glass reveal">
+            <h3>UI Frameworks</h3>
+            <p>Fast layout building with flexible utility systems and responsive component-based styling.</p>
+            <div class="skill-tags">
+              <span class="tag">Bootstrap</span>
+              <span class="tag">Tailwind CSS</span>
+              <span class="tag">Responsive Design</span>
+            </div>
+          </article>
+
+          <article class="skill-card glass reveal">
+            <h3>Libraries & Workflow</h3>
+            <p>Creating dynamic interfaces and maintaining practical development workflow for better delivery.</p>
+            <div class="skill-tags">
+              <span class="tag">React</span>
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">Vite</span>
+            </div>
+          </article>
+
+          <article class="skill-card glass reveal">
+            <h3>WordPress</h3>
+            <p>Website building with flexible page editing and easy content management for real business needs.</p>
+            <div class="skill-tags">
+              <span class="tag">WordPress</span>
+              <span class="tag">Elementor</span>
+              <span class="tag">Gutenberg</span>
+              <span class="tag">WooCommerce</span>
+            </div>
+          </article>
+
+          <article class="skill-card glass reveal">
+            <h3>Design Thinking</h3>
+            <p>Visual hierarchy, spacing, hover states, animation feel, and section flow to improve UX quality.</p>
+            <div class="skill-tags">
+              <span class="tag">UI/UX</span>
+              <span class="tag">Animation</span>
+              <span class="tag">Layout</span>
+            </div>
+          </article>
+
+          <article class="skill-card glass reveal">
+            <h3>AI-Assisted Workflow</h3>
+            <p>Using AI tools smartly for ideation, faster building, structure planning, and workflow improvement.</p>
+            <div class="skill-tags">
+              <span class="tag">Prompting</span>
+              <span class="tag">Automation Ideas</span>
+              <span class="tag">Productivity</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="badge reveal">Featured Projects</div>
+        <h2 class="section-title reveal">A few portfolio-ready projects that showcase design, logic, and responsiveness.</h2>
+        <p class="section-text reveal">
+          Replace these with your real project names, GitHub links, live demos, and screenshots when ready.
+        </p>
+
+        <div class="projects-grid">
+          <article class="project-card glass reveal">
+            <h3>Product Listing Website</h3>
+            <p>A responsive product browsing interface with category sections, search, clean cards, and user-friendly layout.</p>
+            <div class="project-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Responsive UI</span>
+            </div>
+            <div class="project-links">
+              <a href="#">Live Demo</a>
+              <a href="#">GitHub</a>
+            </div>
+          </article>
+        <div class="projects-grid">
+          <article class="project-card glass reveal">
+            <h3>Music player</h3>
+            <p>Amusic player clone of yt Music player with HTML CSS and Javascript</p>
+            <div class="project-tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Responsive UI</span>
+            </div>
+            <div class="project-links">
+              <a href="#">Live Demo</a>
+              <a href="#">GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card glass reveal">
+            <h3>Personal Portfolio</h3>
+            <p>A modern animated personal website highlighting skills, projects, resume details, and contact information.</p>
+            <div class="project-tags">
+              <span class="tag">Portfolio</span>
+              <span class="tag">Animation</span>
+              <span class="tag">UI/UX</span>
+            </div>
+            <div class="project-links">
+              <a href="#">Live Demo</a>
+              <a href="#">GitHub</a>
+            </div>
+          </article>
+
+          <article class="project-card glass reveal">
+            <h3>Apexcify Website Clone</h3>
+            <p>A structured business website clone focused on layout precision, responsive design, and polished visuals.</p>
+            <div class="project-tags">
+              <span class="tag">Clone Project</span>
+              <span class="tag">Responsive</span>
+              <span class="tag">Frontend</span>
+            </div>
+            <div class="project-links">
+              <a href="#">Live Demo</a>
+              <a href="#">GitHub</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="resume">
+      <div class="container">
+        <div class="badge reveal">Resume Snapshot</div>
+        <h2 class="section-title reveal">A quick overview of what I bring as a frontend-focused developer.</h2>
+        <p class="section-text reveal">
+          You can connect this section with your downloadable resume PDF later.
+        </p>
+
+        <div class="resume-grid">
+          <article class="resume-card glass reveal">
+            <h3>Profile</h3>
+            <p>Frontend and WordPress developer focused on creating clean, responsive, and modern websites with strong UI presentation.</p>
+          </article>
+
+          <article class="resume-card glass reveal">
+            <h3>Strengths</h3>
+            <p>Responsive design, modern section building, visual hierarchy, layout structure, clean UI, and practical implementation.</p>
+          </article>
+
+          <article class="resume-card glass reveal">
+            <h3>Career Focus</h3>
+            <p>Frontend development, WordPress projects, portfolio-quality UI work, and AI-supported workflow improvement.</p>
+          </article>
+        </div>
+
+        <div class="btns reveal">
+          <a href="#" class="btn btn-primary">Download Resume</a>
+          <a href="mailto:your.email@example.com" class="btn btn-secondary">Hire Me</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="badge reveal">Contact</div>
+        <h2 class="section-title reveal">Let’s connect and build something solid.</h2>
+        <p class="section-text reveal">
+          You can replace the placeholder email, phone, portfolio, and social links with your real details.
+        </p>
+
+        <div class="contact-grid">
+          <div class="contact-list reveal">
+            <div class="contact-box glass">
+              <h3>Email</h3>
+              <p>your.email@example.com</p>
+            </div>
+            <div class="contact-box glass">
+              <h3>Phone</h3>
+              <p>+92 3XX XXXXXXX</p>
+            </div>
+            <div class="contact-box glass">
+              <h3>Portfolio / Website</h3>
+              <p>muhammadkhan.vercel.app</p>
+            </div>
+            <div class="contact-box glass">
+              <h3>Location</h3>
+              <p>Pakistan</p>
+            </div>
+          </div>
+
+          <div class="card glass reveal">
+            <form class="contact-form" onsubmit="event.preventDefault(); alert('Form submitted. Connect this to Formspree, Netlify Forms, or your backend.');">
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" placeholder="Enter your name" required>
+              </div>
+              <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+              </div>
+              <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" rows="6" placeholder="Write your message" required></textarea>
+              </div>
+              <button class="btn btn-primary" type="submit">Send Message</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <p>© 2026 Muhammad Khan. All rights reserved.</p>
+      </div>
+  </footer>
+
+  <button class="to-top" id="toTop" aria-label="Back to top">↑</button>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    const links = navLinks.querySelectorAll('a');
+    const revealEls = document.querySelectorAll('.reveal');
+    const toTopBtn = document.getElementById('toTop');
+    const sections = document.querySelectorAll('section[id]');
+
+    menuBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('show');
+    });
+
+    links.forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('show');
+      });
+    });
+
+    const revealOnScroll = () => {
+      revealEls.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 90) {
+          el.classList.add('active');
+        }
+      });
+    };
+
+    const updateActiveLink = () => {
+      let current = '';
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 120;
+        if (scrollY >= sectionTop) current = section.getAttribute('id');
+      });
+
+      links.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    };
+
+    const toggleTopButton = () => {
+      if (window.scrollY > 400) {
+        toTopBtn.classList.add('show');
+      } else {
+        toTopBtn.classList.remove('show');
+      }
+    };
+
+    toTopBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    window.addEventListener('scroll', () => {
+      revealOnScroll();
+      updateActiveLink();
+      toggleTopButton();
+    });
+
+    revealOnScroll();
+    updateActiveLink();
+    toggleTopButton();
+  </script>
+</body>
+</html>
